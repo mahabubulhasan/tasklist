@@ -1,5 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import { AppProvider } from "@/context/AppContext";
+import Link from "next/link";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -23,7 +25,14 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <AppProvider>
+          <nav className="flex items-center justify-center border-b border-gray-300">
+            <Link href="/" className="px-4 py-2 hover:bg-gray-200">Home</Link>
+            <Link href="/task" className="px-4 py-2 hover:bg-gray-200">Task</Link>
+          </nav>
+          <hr />
+          {children}
+        </AppProvider>
       </body>
     </html>
   );
